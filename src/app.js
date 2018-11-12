@@ -1,6 +1,9 @@
 import React from 'react';
 import Todo from './components/TodoListView'
 import ChildrenView from './components/ChildrenViewList'
+import Click from './components/ClickView'
+import Toggle from './components/ToggleView'
+import LoginStatus from './components/LoginStatus'
 export default class App extends React.Component{
     constructor(){
         super()
@@ -17,6 +20,9 @@ export default class App extends React.Component{
             <div>
                <Todo></Todo>
                <ChildrenView passValue={this.state.passValue} passTofa = {this.passTofa}></ChildrenView>
+               <Click />
+               <Toggle />
+               <LoginStatus />
             </div>
         )
     }
