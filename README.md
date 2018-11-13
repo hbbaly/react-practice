@@ -1,7 +1,7 @@
 # react-practice
 
 ## 项目介绍
-利用react服务端框架next.js写的自我介绍和博客的网站，喜欢就给个Star支持一下。
+react学习日记
 
 ## 安装依赖
 npm install
