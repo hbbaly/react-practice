@@ -4,6 +4,7 @@ import ChildrenView from './components/ChildrenViewList'
 import Click from './components/ClickView'
 import Toggle from './components/ToggleView'
 import LoginStatus from './components/LoginStatus'
+import Loop from './components/LoopVIew'
 export default class App extends React.Component{
     constructor(){
         super()
@@ -16,6 +17,10 @@ export default class App extends React.Component{
         })
     }
     render(){
+        const posts = [
+            {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
+            {id: 2, title: 'Installation', content: 'You can install React from npm.'}
+          ];
         return(
             <div>
                <Todo></Todo>
@@ -23,6 +28,7 @@ export default class App extends React.Component{
                <Click />
                <Toggle />
                <LoginStatus />
+               <Loop posts={posts} />
             </div>
         )
     }
