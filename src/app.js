@@ -5,6 +5,7 @@ import Click from './components/ClickView'
 import Toggle from './components/ToggleView'
 import LoginStatus from './components/LoginStatus'
 import Loop from './components/LoopVIew'
+import Temperature from './components/TemperatureInputView'
 export default class App extends React.Component{
     constructor(){
         super()
@@ -29,6 +30,7 @@ export default class App extends React.Component{
                <Toggle />
                <LoginStatus />
                <Loop posts={posts} />
+               <Temperature/>
             </div>
         )
     }
