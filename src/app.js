@@ -5,8 +5,9 @@ import Click from './components/ClickView'
 import Toggle from './components/ToggleView'
 import LoginStatus from './components/LoginStatus'
 import Loop from './components/LoopVIew'
-import Temperature from './components/TemperatureInputView'
-import SignUp from './components/fancy/signUp'
+import FocusInput from './components/ref/focusInput'
+import SignUp from './/components/fancy/signUp'
+import UploadFile from './components/uploadFile/uploadFile'
 export default class App extends React.Component{
     constructor(){
         super()
@@ -31,8 +32,9 @@ export default class App extends React.Component{
                <Toggle />
                <LoginStatus />
                <Loop posts={posts} />
-               <Temperature/>
-               <SignUp></SignUp>
+               <SignUp />
+               <FocusInput />
+               <UploadFile ></UploadFile>
             </div>
         )
     }
