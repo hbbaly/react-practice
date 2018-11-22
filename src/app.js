@@ -10,6 +10,7 @@ import SignUp from './/components/fancy/signUp'
 import UploadFile from './components/uploadFile/uploadFile'
 import ClassProperty from './components/classProperties/classProperties'
 import ErrorBoundaey from './components/boundaries/ErrorBoundary'
+import MouseTracker from './components/renderProps/mouseTracker'
 export default class App extends React.Component{
     constructor(){
         super()
@@ -41,6 +42,7 @@ export default class App extends React.Component{
                <ErrorBoundaey>
                <ClassProperty />
                </ErrorBoundaey>
+               <MouseTracker></MouseTracker>
             </div>
         )
     }
