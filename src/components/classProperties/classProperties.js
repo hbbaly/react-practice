@@ -12,7 +12,7 @@ export default class ClassProperty extends React.Component{
     }
     render(){
         return(
-            <div className='click' onClick={e=>this.handleClick(e)}>实验性属性（省略bing(this)）{this.state.msg}</div>
+            <div className='click' onClick={e=>this.handleClick(e)}>实验性属性（省略bind(this)）{state.msg}</div>
         )
     }
 }
