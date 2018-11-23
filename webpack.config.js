@@ -21,12 +21,25 @@ module.exports = {
                 exclude:/node_modules/,
                 loaders:"babel-loader",
                 query:{
-                    presets:['es2015','react']
+                    presets:['es2015','react'],
+                    plugins:['react-html-attrs']
                 }
-            },
-            {
-              test:/\.css$/,
-              loader:['style-loader','css-loader']
+               
+            },{
+              test:/\.(png|jpg|gif)$/,
+              use:[
+                  {
+                      loader:'url-loader',    
+                      options:{
+                          limit:50000,
+                          outputPath:'img/'
+                      }
+                  }
+              ]
+          },
+          {
+            test: /\.css$/,
+            loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]_[local]__[hash:base64:5]'
           }
         ]
     }
