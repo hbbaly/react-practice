@@ -4,6 +4,7 @@
  * @desc：官网的todo联系例子
 */
 import React from 'react';
+import '../css/TodoList'
 export default class Todo extends React.Component{
     constructor(props){
         super(props)
@@ -29,7 +30,7 @@ export default class Todo extends React.Component{
     render(){
         return(
             <div>
-                <h3>TODO</h3>
+                <h3 className="title">TODO</h3>
                 <ul>
                     {this.state.todoList.map(item =>(
                         <li key={item.id}>{item.text}</li>
