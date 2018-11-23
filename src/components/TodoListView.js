@@ -28,6 +28,13 @@ export default class Todo extends React.Component{
         }))
     }
     render(){
+
+      // 行内样式
+      const bg = {
+        color:{
+          color: "#f60"
+        }
+      }
         return(
             <div>
                 <h3 class={TodoList.title}>TODO</h3>
@@ -37,7 +44,7 @@ export default class Todo extends React.Component{
                     ))}
                 </ul>
                 <input onChange = {this.inputTodo} value={this.state.text}/>
-                <button onClick={this.addTodo}>Add</button>
+                <button style={bg.color} onClick={this.addTodo}>Add</button>
             </div>
         )
     }
