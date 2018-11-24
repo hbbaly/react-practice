@@ -1,4 +1,5 @@
 import React from 'react';
+import {BrowserRouter as Router , Route,Link} from 'react-router-dom'
 import Todo from './components/TodoListView'
 import ChildrenView from './components/ChildrenViewList'
 import Click from './components/ClickView'
@@ -11,6 +12,7 @@ import UploadFile from './components/uploadFile/uploadFile'
 import ClassProperty from './components/classProperties/classProperties'
 import ErrorBoundaey from './components/boundaries/ErrorBoundary'
 import MouseTracker from './components/renderProps/mouseTracker'
+const TodoList  = ()=> <h1>TODO LIST</h1>
 export default class App extends React.Component{
     constructor(){
         super()
@@ -28,6 +30,7 @@ export default class App extends React.Component{
             {id: 2, title: 'Installation', content: 'You can install React from npm.'}
           ];
         return(
+          <Router>
             <div>
                <Todo></Todo>
                <ChildrenView passValue={this.state.passValue} passTofa = {this.passTofa}></ChildrenView>
@@ -35,7 +38,7 @@ export default class App extends React.Component{
                <Toggle />
                <LoginStatus />
                <Loop posts={posts} />
-               <SignUp />
+               {/* <SignUp /> */}
                <FocusInput />
                <UploadFile ></UploadFile>
               
@@ -44,6 +47,7 @@ export default class App extends React.Component{
                </ErrorBoundaey>
                <MouseTracker></MouseTracker>
             </div>
+          </Router>
         )
     }
 }

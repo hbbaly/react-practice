@@ -28,7 +28,6 @@ export default class Todo extends React.Component{
         }))
     }
     render(){
-
       // 行内样式
       const bg = {
         color:{

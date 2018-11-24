@@ -1,7 +1,7 @@
 const path =require('path');
 module.exports = {
     //入口文件
-    entry:'./src/index.js',
+    entry:'./view/index.js',
     //出口文件
     output:{
         filename:'index.js',
