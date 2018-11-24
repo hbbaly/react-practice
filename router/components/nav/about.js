@@ -4,7 +4,7 @@ export default class About extends React.Component{
     super(props)
   }
   componentDidMount(){
-    console.log(this.props.match)
+    console.log(this.props )
   }
   render(){
     return(

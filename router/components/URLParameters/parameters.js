@@ -1,6 +1,7 @@
 import React from 'react'
 import {BrowserRouter as Router, Route,Link} from 'react-router-dom'
 import Child from './child'
+import Regex from './paramsWithReg'
 export default class Parameters extends React.Component{
   constructor(props){
     super(props)
@@ -25,6 +26,10 @@ export default class Parameters extends React.Component{
             </li>
           </ul> 
           <Route path="/:id" component={Child}></Route>
+          {/* <Route
+          path="/order/:direction(asc|desc)"
+          component={Regex}
+        /> */}
         </div>
       </Router>
 
