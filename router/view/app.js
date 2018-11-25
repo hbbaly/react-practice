@@ -3,6 +3,7 @@ import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
 import Nav from '../components/nav/nav'
 import Parameters from '../components/URLParameters/parameters'
 import RedirectUrl from '../components/redirect/index'
+import Custom from '../components/customLink/index'
 export default class App extends React.Component{
     constructor(){
         super()
@@ -22,9 +23,13 @@ export default class App extends React.Component{
                 <div class="router-redirect">
                   <Link to="/redirecturl">Redirect</Link>
                 </div>
+                <div class="router-custom">
+                  <Link to="/customlink">CustomLink</Link>
+                </div>
                 <Route path="/basic" component={Nav}></Route>
                 <Route path="/params" component={Parameters}></Route>
                 <Route path='/redirecturl' component={RedirectUrl}></Route>
+                <Route path='/customlink' component={Custom}></Route>
               </div>
             </Router>
           </div>

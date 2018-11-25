@@ -32,7 +32,6 @@ export default class RedirectUrl extends React.Component{
             </div>
             <Route path="/public" component = {Public}></Route>
             <Route path="/login" component={Login} siginIn = {this.siginIn} ></Route>
-            {/* <Protected path="/protect" component={Protect}></Protected> */}
             <Route path="/protect" component={Protected} Component = {Protect} loginState={this.state.loginState}></Route>
           </div>
         </Router>
