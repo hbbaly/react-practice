@@ -5,6 +5,7 @@ import Parameters from '../components/URLParameters/parameters'
 import RedirectUrl from '../components/redirect/index'
 import Custom from '../components/customLink/index'
 import Match from '../components/noMatch/index'
+import Recursive from '../components/recursive/index'
 export default class App extends React.Component{
     constructor(){
         super()
@@ -30,11 +31,15 @@ export default class App extends React.Component{
                 <div class="router-no-match">
                   <Link to="/match">match</Link>
                 </div>
+                <div class="recursive">
+                  <Link to="/recursive">Recursive</Link>
+                </div>
                 <Route path="/basic" component={Nav}></Route>
                 <Route path="/params" component={Parameters}></Route>
                 <Route path='/redirecturl' component={RedirectUrl}></Route>
                 <Route path='/customlink' component={Custom}></Route>
                 <Route path='/match' component={Match}></Route>
+                <Route path='/recursive' component={Recursive}></Route>
               </div>
             </Router>
           </div>
