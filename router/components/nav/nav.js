@@ -6,6 +6,11 @@ import Topics from './topics'
 export default class Nav extends React.Component{
   constructor(props){
     super(props)
+    this.jump = this.jump.bind(this)
+  }
+  jump(){
+    console.log('jump')
+    this.props.history.push('/about')
   }
   render(){
     return(
@@ -15,8 +20,8 @@ export default class Nav extends React.Component{
             <li>
               <Link to="/">Home</Link>
             </li>
-            <li>
-              <Link to="/about">About</Link>
+            <li onClick={this.jump}>
+              About-jump
             </li>
             <li>
               <Link to="/topics">Topics</Link>
