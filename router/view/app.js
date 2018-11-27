@@ -4,6 +4,7 @@ import Nav from '../components/nav/nav'
 import Parameters from '../components/URLParameters/parameters'
 import RedirectUrl from '../components/redirect/index'
 import Custom from '../components/customLink/index'
+import Match from '../components/noMatch/index'
 export default class App extends React.Component{
     constructor(){
         super()
@@ -26,10 +27,14 @@ export default class App extends React.Component{
                 <div class="router-custom">
                   <Link to="/customlink">CustomLink</Link>
                 </div>
+                <div class="router-no-match">
+                  <Link to="/match">match</Link>
+                </div>
                 <Route path="/basic" component={Nav}></Route>
                 <Route path="/params" component={Parameters}></Route>
                 <Route path='/redirecturl' component={RedirectUrl}></Route>
                 <Route path='/customlink' component={Custom}></Route>
+                <Route path='/match' component={Match}></Route>
               </div>
             </Router>
           </div>
