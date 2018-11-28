@@ -6,6 +6,7 @@ import RedirectUrl from '../components/redirect/index'
 import Custom from '../components/customLink/index'
 import Match from '../components/noMatch/index'
 import Recursive from '../components/recursive/index'
+import SideBar from '../components/sidebar/index'
 export default class App extends React.Component{
     constructor(){
         super()
@@ -34,12 +35,17 @@ export default class App extends React.Component{
                 <div class="recursive">
                   <Link to="/recursive">Recursive</Link>
                 </div>
+                <div class="sidebar">
+                  <Link to="/sidebar">Sidebar</Link>
+                </div>
+                
                 <Route path="/basic" component={Nav}></Route>
                 <Route path="/params" component={Parameters}></Route>
                 <Route path='/redirecturl' component={RedirectUrl}></Route>
                 <Route path='/customlink' component={Custom}></Route>
                 <Route path='/match' component={Match}></Route>
                 <Route path='/recursive' component={Recursive}></Route>
+                <Route path='/sidebar' component={SideBar}></Route>
               </div>
             </Router>
           </div>
