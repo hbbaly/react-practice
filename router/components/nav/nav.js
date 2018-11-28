@@ -1,16 +1,18 @@
 import React from 'react'
-import {BrowserRouter as Router, Route,Link} from 'react-router-dom'
+import {BrowserRouter as Router, Route,Link,withRouter} from 'react-router-dom'
 import  Home from './home'
 import About from './about'
 import Topics from './topics'
-export default class Nav extends React.Component{
+import Match from '../noMatch/index'
+
+class Nav extends React.Component{
   constructor(props){
     super(props)
-    this.jump = this.jump.bind(this)
+    this.jumpPath = this.jumpPath.bind(this)
   }
-  jump(){
-    console.log('jump')
-    this.props.history.push('/about')
+  jumpPath(){
+    console.log('jump',this.props)
+    this.props.history.push({path:'/about'})
   }
   render(){
     return(
@@ -20,8 +22,8 @@ export default class Nav extends React.Component{
             <li>
               <Link to="/">Home</Link>
             </li>
-            <li onClick={this.jump}>
-              About-jump
+            <li>
+            <Link to="/about">About</Link>
             </li>
             <li>
               <Link to="/topics">Topics</Link>
@@ -31,8 +33,10 @@ export default class Nav extends React.Component{
           <Route path="/" exact component={Home}></Route>
           <Route path="/about"  component={About}></Route>
           <Route path="/topics"  component={Topics}></Route>
+          <Route path="/match"  component={Match}></Route>
         </div>
       </Router>
     )
   }
 }
+export default withRouter(Nav)
