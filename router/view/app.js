@@ -7,6 +7,7 @@ import Custom from '../components/customLink/index'
 import Match from '../components/noMatch/index'
 import Recursive from '../components/recursive/index'
 import SideBar from '../components/sidebar/index'
+import Transition from '../components/transition/index'
 export default class App extends React.Component{
     constructor(){
         super()
@@ -38,7 +39,9 @@ export default class App extends React.Component{
                 <div class="sidebar">
                   <Link to="/sidebar">Sidebar</Link>
                 </div>
-                
+                <div class="transition">
+                  <Link to="/transition">Transition</Link>
+                </div>
                 <Route path="/basic" component={Nav}></Route>
                 <Route path="/params" component={Parameters}></Route>
                 <Route path='/redirecturl' component={RedirectUrl}></Route>
@@ -46,6 +49,7 @@ export default class App extends React.Component{
                 <Route path='/match' component={Match}></Route>
                 <Route path='/recursive' component={Recursive}></Route>
                 <Route path='/sidebar' component={SideBar}></Route>
+                <Route path='/transition' component={Transition}></Route>
               </div>
             </Router>
           </div>
