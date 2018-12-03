@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 class Todo extends React.Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
     }
     render(){
         const props = this.props
