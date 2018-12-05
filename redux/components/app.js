@@ -42,15 +42,15 @@ class App extends React.Component{
                     减
                 </button>
                <h2>使用redux和ant design编写todoList</h2>
-               <div>
+               <div style={{display:'flex',padding:'20px'}}>
                 <Input placeholder="Basic usage" />
                 <Button type="primary">Add</Button>
-                <List
+               </div>
+               <List style={{width:'90%',margin:'0 auto'}}
                     bordered
                     dataSource={data}
                     renderItem={item => (<List.Item>{item}</List.Item>)}
                 />
-               </div>
             </div>
         )
     }
