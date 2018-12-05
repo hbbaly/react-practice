@@ -4,16 +4,14 @@ import {createStore} from 'redux'
 import 'antd/dist/antd.css';
 import reducer from '../store/reducers/index'
 const store = createStore(reducer)
-const data = [
-    'Racing car sprays burning fuel into crowd.',
-    'Japanese princess to wed commoner.',
-    'Australian walks 100km after outback crash.',
-    'Man charged over missing wedding girl.',
-    'Los Angeles battles huge wildfires.',
-  ];
+import Store from '../store/index'
 class App extends React.Component{
     constructor(props){
         super(props)
+        console.log(Store.getState(),'test')
+        this.state = Store.getState()
+        this.handleChange = this.handleChange.bind(this)
+
     }
     componentDidMount(){
         store.dispatch({type:'ADD'})
@@ -32,6 +30,10 @@ class App extends React.Component{
         store.dispatch({type:'DESC'})
         console.log(store.getState(),'desc')
     }
+    handleChange(e){
+        console.log(e.target.value)
+        Store.dispatch({type:'changeInput',value:e.target.value})
+    }
     render(){
         return(
             <div>
@@ -43,12 +45,12 @@ class App extends React.Component{
                 </button>
                <h2>使用redux和ant design编写todoList</h2>
                <div style={{display:'flex',padding:'20px'}}>
-                <Input placeholder="Basic usage" />
+                <Input placeholder="Basic usage" value={this.state.inputVal} onChange = {this.handleChange}/>
                 <Button type="primary">Add</Button>
                </div>
                <List style={{width:'90%',margin:'0 auto'}}
                     bordered
-                    dataSource={data}
+                    dataSource={this.state.todoList}
                     renderItem={item => (<List.Item>{item}</List.Item>)}
                 />
             </div>
