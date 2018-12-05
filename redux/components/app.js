@@ -1,11 +1,16 @@
 import React from 'react'
-// import FilterLink from './filterLink'
-// import Footer from './footer'
-// import AddTodo from './addTodo'
-// import VisibilityTodoList from './visibilityTodoList'
+import { Input , Button,List  } from 'antd';
 import {createStore} from 'redux'
+import 'antd/dist/antd.css';
 import reducer from '../store/reducers/index'
 const store = createStore(reducer)
+const data = [
+    'Racing car sprays burning fuel into crowd.',
+    'Japanese princess to wed commoner.',
+    'Australian walks 100km after outback crash.',
+    'Man charged over missing wedding girl.',
+    'Los Angeles battles huge wildfires.',
+  ];
 class App extends React.Component{
     constructor(props){
         super(props)
@@ -20,6 +25,7 @@ class App extends React.Component{
     }
     handleAdd(){
         store.dispatch({type:'ADD'})
+        console.log(store,'add')
         console.log(store.getState(),'add')
     }
     handleDesc(){
@@ -35,9 +41,16 @@ class App extends React.Component{
                 <button onClick={()=>this.handleDesc()}>
                     减
                 </button>
-                {/* <AddTodo />
-                <VisibilityTodoList />
-                <Footer /> */}
+               <h2>使用redux和ant design编写todoList</h2>
+               <div>
+                <Input placeholder="Basic usage" />
+                <Button type="primary">Add</Button>
+                <List
+                    bordered
+                    dataSource={data}
+                    renderItem={item => (<List.Item>{item}</List.Item>)}
+                />
+               </div>
             </div>
         )
     }
