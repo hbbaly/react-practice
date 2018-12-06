@@ -12,11 +12,9 @@ class App extends React.Component{
         this.handleItemDelete = this.handleItemDelete.bind(this)
         this.state = Store.getState()    //把store中的数据赋值给组建的state
         Store.subscribe(this.handleChangeVal)  // 订阅handleChangeVal函数，当store放生改变会触发这个函数
-
     }
     componentDidMount(){
         axios.get('https://www.vue-js.com/api/v1/topics').then(res=>{
-            console.log(res)
             const data = res.data.data
             const action = creators.getRequestData(data)
             Store.dispatch(action)
@@ -41,25 +39,6 @@ class App extends React.Component{
     render(){
         return(
             <TodoListUi  inputVal = {this.state.inputVal} requestList = {this.state.requestList} handleClick = {this.handleClick} handleChange = {this.handleChange} todoList = {this.state.todoList} handleItemDelete = {this.handleItemDelete}/>
-            
-            // <div>
-            //     <button onClick={()=>this.handleAdd()}>
-            //         加
-            //     </button>
-            //     <button onClick={()=>this.handleDesc()}>
-            //         减
-            //     </button>
-            //    <h2>使用redux和ant design编写todoList</h2>
-            //    <div style={{display:'flex',padding:'20px'}}>
-            //     <Input placeholder="Basic usage" value={this.state.inputVal} onChange = {this.handleChange}/>
-            //     <Button type="primary" onClick = {this.handleClick}>Add</Button>
-            //    </div>
-            //    <List style={{width:'90%',margin:'0 auto'}}
-            //         bordered
-            //         dataSource={this.state.todoList}
-            //         renderItem={(item ,index)=> (<List.Item onClick={this.handleItemDelete.bind(this,index)}>{item}</List.Item>)}
-            //     />
-            // </div>
         )
     }
 }
