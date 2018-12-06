@@ -1,3 +1,4 @@
+import actionTypes from './actionTypes'
 const defaultVal = {
     inputVal:'',
     todoList:[]
@@ -7,14 +8,14 @@ export default (state = defaultVal,action) => {
     // state : store中的数据，默认是一个对象
     const newVal = JSON.parse(JSON.stringify(state))
     switch(action.type){
-        case('changeInput'):
+        case(actionTypes.CHANGEINPUT):
           newVal.inputVal = action.value
           return newVal
-        case('ADD'):
+        case(actionTypes.ADD):
           newVal.todoList.push(newVal.inputVal)
           newVal.inputVal = ''
           return newVal
-        case('DELETE'):
+        case(actionTypes.DELETE):
           newVal.todoList.splice(action.index,1)
           return newVal
         default:

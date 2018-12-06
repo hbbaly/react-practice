@@ -5,6 +5,7 @@ import 'antd/dist/antd.css';
 import reducer from '../store/reducers/index'
 const store = createStore(reducer)
 import Store from '../store/index'
+import actionTypes from '../store/actionTypes'
 class App extends React.Component{
     constructor(props){
         super(props)
@@ -31,7 +32,7 @@ class App extends React.Component{
         console.log(store.getState(),'add')
     }
     handleDesc(){
-        store.dispatch({type:'DESC'})
+        store.dispatch({type:actionTypes.CHANGEINPUT})
         console.log(store.getState(),'desc')
     }
     handleChange(e){
@@ -45,13 +46,13 @@ class App extends React.Component{
     handleClick(){
       /// 添加按钮
       const action = {
-        type:'ADD'
+        type:actionTypes.ADD
       }
       Store.dispatch(action)
     }
     handleItemDelete(index){
       const action = {
-        type:'DELETE',
+        type:actionTypes.DELETE,
         index
       }
       Store.dispatch(action)
