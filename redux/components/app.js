@@ -8,9 +8,11 @@ import Store from '../store/index'
 class App extends React.Component{
     constructor(props){
         super(props)
-        console.log(Store.getState(),'test')
-        this.state = Store.getState()
         this.handleChange = this.handleChange.bind(this)
+        this.handleChangeVal = this.handleChangeVal.bind(this)
+        console.log(Store.getState(),'test')
+        this.state = Store.getState()    //把store中的数据赋值给组建的state
+        Store.subscribe(this.handleChangeVal)  // 订阅handleChangeVal函数，当store放生改变会触发这个函数
 
     }
     componentDidMount(){
@@ -33,6 +35,10 @@ class App extends React.Component{
     handleChange(e){
         console.log(e.target.value)
         Store.dispatch({type:'changeInput',value:e.target.value})
+    }
+    handleChangeVal(){
+      console.log('store change')
+      this.setState(Store.getState())   // 订阅函数发生改变时， 重新更新试图
     }
     render(){
         return(
