@@ -11,6 +11,7 @@ class App extends React.Component{
         this.handleChange = this.handleChange.bind(this)
         this.handleChangeVal = this.handleChangeVal.bind(this)
         this.handleClick = this.handleClick.bind(this)
+        // this.handleItemDelete = this.handleItemDelete.bind(this)
         console.log(Store.getState(),'test')
         this.state = Store.getState()    //把store中的数据赋值给组建的state
         Store.subscribe(this.handleChangeVal)  // 订阅handleChangeVal函数，当store放生改变会触发这个函数
@@ -48,6 +49,13 @@ class App extends React.Component{
       }
       Store.dispatch(action)
     }
+    handleItemDelete(index){
+      const action = {
+        type:'DELETE',
+        index
+      }
+      Store.dispatch(action)
+    }
     render(){
         return(
             <div>
@@ -65,7 +73,7 @@ class App extends React.Component{
                <List style={{width:'90%',margin:'0 auto'}}
                     bordered
                     dataSource={this.state.todoList}
-                    renderItem={item => (<List.Item>{item}</List.Item>)}
+                    renderItem={(item ,index)=> (<List.Item onClick={this.handleItemDelete.bind(this,index)}>{item}</List.Item>)}
                 />
             </div>
         )
