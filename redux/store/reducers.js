@@ -1,7 +1,8 @@
 import actionTypes from './actionTypes'
 const defaultVal = {
     inputVal:'',
-    todoList:[]
+    todoList:[],
+    requestList:[]
 }
 // reducer 可以接受state ，但是不能改变state       const newVal = JSOn.parse(JSON.stringify(state))
 export default (state = defaultVal,action) => {
@@ -18,6 +19,9 @@ export default (state = defaultVal,action) => {
         case(actionTypes.DELETE):
           newVal.todoList.splice(action.index,1)
           return newVal
+        case(actionTypes.REQUESTDATA):
+            newVal.requestList = action.data
+            return newVal
         default:
           return state
     }

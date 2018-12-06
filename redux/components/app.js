@@ -2,6 +2,7 @@ import React from 'react'
 import Store from '../store/index'
 import creators from '../store/creators'
 import TodoListUi from './todoListUi'
+import axios from 'axios'
 class App extends React.Component{
     constructor(props){
         super(props)
@@ -12,6 +13,14 @@ class App extends React.Component{
         this.state = Store.getState()    //把store中的数据赋值给组建的state
         Store.subscribe(this.handleChangeVal)  // 订阅handleChangeVal函数，当store放生改变会触发这个函数
 
+    }
+    componentDidMount(){
+        axios.get('https://www.vue-js.com/api/v1/topics').then(res=>{
+            console.log(res)
+            const data = res.data.data
+            const action = creators.getRequestData(data)
+            Store.dispatch(action)
+        })
     }
     handleChange(e){
       const action = creators.getInputChangeAction(e.target.value)
@@ -31,7 +40,8 @@ class App extends React.Component{
     }
     render(){
         return(
-            <TodoListUi  inputVal = {this.state.inputVal} handleClick = {this.handleClick} handleChange = {this.handleChange} todoList = {this.state.todoList} handleItemDelete = {this.handleItemDelete}/>
+            <TodoListUi  inputVal = {this.state.inputVal} requestList = {this.state.requestList} handleClick = {this.handleClick} handleChange = {this.handleChange} todoList = {this.state.todoList} handleItemDelete = {this.handleItemDelete}/>
+            
             // <div>
             //     <button onClick={()=>this.handleAdd()}>
             //         加

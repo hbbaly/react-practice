@@ -24,6 +24,11 @@ export default class TodoListUi extends React.Component{
                     dataSource={this.props.todoList}
                     renderItem={(item ,index)=> (<List.Item onClick={()=>{this.props.handleItemDelete(index)}}>{item}</List.Item>)}
                 />
+                {
+                    this.props.requestList.map(item=>(
+                        <div key={item.id}>{item.title}</div>
+                    ))
+                }
             </div>
         )
     }
