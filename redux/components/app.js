@@ -2,7 +2,7 @@ import React from 'react'
 import Store from '../store/index'
 import creators from '../store/creators'
 import TodoListUi from './todoListUi'
-import axios from 'axios'
+// import axios from 'axios'
 class App extends React.Component{
     constructor(props){
         super(props)
@@ -14,11 +14,12 @@ class App extends React.Component{
         Store.subscribe(this.handleChangeVal)  // 订阅handleChangeVal函数，当store放生改变会触发这个函数
     }
     componentDidMount(){
-        axios.get('https://www.vue-js.com/api/v1/topics').then(res=>{
-            const data = res.data.data
-            const action = creators.getRequestData(data)
-            Store.dispatch(action)
-        })
+      Store.dispatch(creators.getVueList())
+        // axios.get('https://www.vue-js.com/api/v1/topics').then(res=>{
+        //     const data = res.data.data
+        //     const action = creators.getRequestData(data)
+        //     Store.dispatch(action)
+        // })
     }
     handleChange(e){
       const action = creators.getInputChangeAction(e.target.value)
