@@ -1,4 +1,5 @@
 const path =require('path');
+// const babelpolyfill = require("babel-polyfill");
 module.exports = {
     //入口文件
     entry:'./index.js',

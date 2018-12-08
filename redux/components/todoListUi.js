@@ -8,12 +8,6 @@ export default class TodoListUi extends React.Component{
     render(){
         return(
             <div>
-                <button onClick={()=>this.props.handleAdd()}>
-                    加
-                </button>
-                <button onClick={()=>this.props.handleDesc()}>
-                    减
-                </button>
                <h2>使用redux和ant design编写todoList</h2>
                <div style={{display:'flex',padding:'20px'}}>
                 <Input placeholder="Basic usage" value={this.props.inputVal} onChange = {this.props.handleChange}/>

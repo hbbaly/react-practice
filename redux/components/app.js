@@ -14,12 +14,13 @@ class App extends React.Component{
         Store.subscribe(this.handleChangeVal)  // 订阅handleChangeVal函数，当store放生改变会触发这个函数
     }
     componentDidMount(){
-      Store.dispatch(creators.getVueList())
-        // axios.get('https://www.vue-js.com/api/v1/topics').then(res=>{
-        //     const data = res.data.data
-        //     const action = creators.getRequestData(data)
-        //     Store.dispatch(action)
-        // })
+      const action = creators.getVueDemoList()
+      Store.dispatch(action)
+      // axios.get('https://www.vue-js.com/api/v1/topics').then(res=>{
+      //     const data = res.data.data
+      //     const action = creators.getRequestData(data)
+      //     Store.dispatch(action)
+      // })
     }
     handleChange(e){
       const action = creators.getInputChangeAction(e.target.value)
