@@ -2,45 +2,56 @@ import React from 'react'
 import Store from '../store/index'
 import creators from '../store/creators'
 import TodoListUi from './todoListUi'
-// import axios from 'axios'
+import {connect} from 'react-redux'
+import { Input , Button , List  } from 'antd';
+import 'antd/dist/antd.css';
 class App extends React.Component{
     constructor(props){
         super(props)
-        this.handleChange = this.handleChange.bind(this)
         this.handleChangeVal = this.handleChangeVal.bind(this)
-        this.handleClick = this.handleClick.bind(this)
-        this.handleItemDelete = this.handleItemDelete.bind(this)
         this.state = Store.getState()    //把store中的数据赋值给组建的state
         Store.subscribe(this.handleChangeVal)  // 订阅handleChangeVal函数，当store放生改变会触发这个函数
     }
     componentDidMount(){
       Store.dispatch(creators.getVueList())
-        // axios.get('https://www.vue-js.com/api/v1/topics').then(res=>{
-        //     const data = res.data.data
-        //     const action = creators.getRequestData(data)
-        //     Store.dispatch(action)
-        // })
-    }
-    handleChange(e){
-      const action = creators.getInputChangeAction(e.target.value)
-      Store.dispatch(action)
     }
     handleChangeVal(){
       this.setState(Store.getState())   // 订阅函数发生改变时， 重新更新试图
     }
-    handleClick(){
-      /// 添加按钮
-      const action = creators.getAddItem()
-      Store.dispatch(action)
-    }
-    handleItemDelete(index){
-      const action =creators.getDeleteItem(index)
-      Store.dispatch(action)
-    }
     render(){
         return(
-            <TodoListUi  inputVal = {this.state.inputVal} requestList = {this.state.requestList} handleClick = {this.handleClick} handleChange = {this.handleChange} todoList = {this.state.todoList} handleItemDelete = {this.handleItemDelete}/>
+          <div>
+               <h2>使用redux和ant design编写todoList</h2>
+               <div style={{display:'flex',padding:'20px'}}>
+                <Input placeholder="Basic usage" value={this.props.inputVal} onChange = {this.props.handleChange}/>
+                <Button type="primary" onClick = {this.props.handleClick}>Add</Button>
+               </div>
+               <List style={{width:'90%',margin:'0 auto'}}
+                    bordered
+                    dataSource={this.state.todoList}
+                    renderItem={(item ,index)=> (<List.Item onClick={()=>{this.props.handleItemDelete(index)}}>{item}</List.Item>)}
+                />
+            <TodoListUi  requestList = {this.state.requestList} />                
+            </div>
         )
     }
 }
-export default App   
+const mapStateToProps = (state)=>({
+  inputVal:state.inputVal
+})
+const mapDispatchToProps  = (dispatch) => ({
+  handleChange(e){
+    const action = creators.getInputChangeAction(e.target.value)
+    dispatch(action)
+  },
+  handleClick(){
+    /// 添加按钮
+    const action = creators.getAddItem()
+    dispatch(action)
+  },
+  handleItemDelete(index){
+    const action =creators.getDeleteItem(index)
+    dispatch(action)
+  }
+})
+export default connect(mapStateToProps,mapDispatchToProps )(App)
