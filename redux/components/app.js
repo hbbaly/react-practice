@@ -15,11 +15,6 @@ class App extends React.Component{
     }
     componentDidMount(){
       Store.dispatch(creators.getVueList())
-        // axios.get('https://www.vue-js.com/api/v1/topics').then(res=>{
-        //     const data = res.data.data
-        //     const action = creators.getRequestData(data)
-        //     Store.dispatch(action)
-        // })
     }
     handleChange(e){
       const action = creators.getInputChangeAction(e.target.value)
