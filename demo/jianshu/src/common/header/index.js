@@ -36,7 +36,7 @@ export default class Header extends React.Component{
               <i className="iconfont">&#xe644;</i>
               消息
             </HeaderTitleItem>
-            <HeaderTitleItem>
+            <HeaderTitleItem isSearch>
             <CSSTransition
               timeout={200}
               in={this.state.focused}

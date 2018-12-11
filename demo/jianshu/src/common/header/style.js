@@ -28,8 +28,8 @@ export const HeaderContent = styled.div`
 `
 export const HeaderTitleItem = styled.div`
   position:relative;
-  display:inline-block;
-  padding:0 15px;
+  float:left;
+  padding:${props=>!props.isSearch?'15px;':'9px 15px;'}
   line-height:26px;
   color: ${props => props.color ? ' #ea6f5a;' : '#333;'};
   cursor:pointer;
@@ -72,7 +72,6 @@ export const Search = styled.input.attrs({
 })`
   width: 160px;
   height: 38px;
-  margin:9px 0;
   padding: 0 40px 0 20px;
   color:#999;
   font-size: 14px;
