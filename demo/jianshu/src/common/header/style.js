@@ -27,8 +27,9 @@ export const HeaderContent = styled.div`
   margin:0 240px 0 140px;
 `
 export const HeaderTitleItem = styled.div`
+  position:relative;
   display:inline-block;
-  padding:15px;
+  padding:0 15px;
   line-height:26px;
   color: ${props => props.color ? ' #ea6f5a;' : '#333;'};
   cursor:pointer;
@@ -36,5 +37,41 @@ export const HeaderTitleItem = styled.div`
     margin-right:5px;
     font-size:26px;
     vertical-align: bottom;
+    border-radius:50%;
+
+    &.focused{
+      background:#777;
+      color:#fff;
+    }
+  }
+  :hover{
+    background:${props => props.bg ? ' #f5f5f5;' : '#fff;'}
+  }
+  .search{
+    position:absolute;
+    top:50%;
+    right:15px;
+    margin-top:-12px;
+  }
+`
+export const Search = styled.input.attrs({
+  type:'text',
+  placeholder:'搜索',
+})`
+  width: 160px;
+  height: 38px;
+  margin:9px 0;
+  padding: 0 40px 0 20px;
+  color:#999;
+  font-size: 14px;
+  border: 1px solid #eee;
+  border-radius: 40px;
+  background: #eee;
+  outline:none;
+  &::placeholder{
+    color:#999;
+  }
+  &.focused{
+    width:240px;
   }
 `
