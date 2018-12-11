@@ -1,11 +1,6 @@
 import React from 'react'
 import {JianShuHeader,HeaderWrapper,Logo,HeaderContent,HeaderTitleItem,Search} from './style'
 import { CSSTransition } from 'react-transition-group';
-// const titleItem = [
-//   {
-//     icon:''
-//   }
-// ]
 export default class Header extends React.Component{
   constructor(props){
     super(props)
@@ -43,7 +38,8 @@ export default class Header extends React.Component{
             </HeaderTitleItem>
             <HeaderTitleItem>
             <CSSTransition
-              timeout={300}
+              timeout={200}
+              in={this.state.focused}
               classNames="slide">
               <Search className={this.state.focused?'focused':''} onFocus={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)}>
               </Search>

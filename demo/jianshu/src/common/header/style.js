@@ -53,6 +53,18 @@ export const HeaderTitleItem = styled.div`
     right:15px;
     margin-top:-12px;
   }
+  .slide-enter {
+    transition all .2s ease-out;
+  }
+  .slide-enter-active {
+    width:240px;
+  }
+  .slide-exit {
+    transition all .2s ease-out;
+  }
+  .slide-exit-active {
+    width:160px;
+  }
 `
 export const Search = styled.input.attrs({
   type:'text',
