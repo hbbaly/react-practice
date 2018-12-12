@@ -1,14 +1,14 @@
-import {Focused,Blur} from '../../../store/actionTypies'
+import actionTypes from './actionTypies'
 
 const defaultState = {
   focused:false
 }
 const headerReducer = (state=defaultState,action)=>{
   const newState = JSON.parse(JSON.stringify(state))
-  if(action.type===Focused){
+  if(action.type===actionTypes.Focused){
     newState.focused = true
   }
-  if(action.type===Blur){
+  if(action.type===actionTypes.Blur){
     newState.focused = false
   }
   return newState

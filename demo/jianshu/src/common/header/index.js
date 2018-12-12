@@ -1,9 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
 // import store from '../../store/index'
-import {Focused,Blur} from '../../store/actionTypies'
+import store from './store'
 import {JianShuHeader,HeaderWrapper,Logo,HeaderContent,HeaderTitleItem,Search} from './style'
 import { CSSTransition } from 'react-transition-group';
+console.log(store)
 const Header = (props) => {
   return(
     <JianShuHeader>
@@ -42,10 +43,10 @@ const mapStateToProps = (state) => ({
 })
 const mapDispatchToProps = (dispatch) => ({
   handleFocus(){
-    dispatch({type:Focused})
+    dispatch(store.creators.handleFocused())
   },
   handleBlur(){
-    dispatch({type:Blur})
+    dispatch(store.creators.handleBlur())
   }
 })
 export default connect(mapStateToProps,mapDispatchToProps)(Header)
