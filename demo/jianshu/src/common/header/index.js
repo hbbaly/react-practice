@@ -1,26 +1,12 @@
 import React from 'react'
+import {connect} from 'react-redux'
+// import store from '../../store/index'
+import {Focused,Blur} from '../../store/actionTypies'
 import {JianShuHeader,HeaderWrapper,Logo,HeaderContent,HeaderTitleItem,Search} from './style'
 import { CSSTransition } from 'react-transition-group';
-export default class Header extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = {
-      focused:false
-    }
-  }
-  handleFocus(){
-    this.setState({
-      focused:true
-    })
-  }
-  handleBlur(){
-    this.setState({
-      focused:false
-    })
-  }
-  render(){
-    return(
-      <JianShuHeader>
+const Header = (props) => {
+  return(
+    <JianShuHeader>
         <HeaderWrapper>
           <Logo />
           <HeaderContent >
@@ -39,16 +25,28 @@ export default class Header extends React.Component{
             <HeaderTitleItem isSearch>
             <CSSTransition
               timeout={200}
-              in={this.state.focused}
+              in={props.focused}
               classNames="slide">
-              <Search className={this.state.focused?'focused':''} onFocus={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)}>
+              <Search className={props.focused?'focused':''} onFocus={props.handleFocus} onBlur={props.handleBlur}>
               </Search>
               </CSSTransition>
-              <i className={this.state.focused?'iconfont search focused':'iconfont search'}>&#xe63a;</i>
+              <i className={props.focused?'iconfont search focused':'iconfont search'}>&#xe63a;</i>
             </HeaderTitleItem>
           </HeaderContent>
         </HeaderWrapper>
       </JianShuHeader>
-    )
-  }
+  )
 }
+const mapStateToProps = (state) => ({
+  focused:state.focused
+})
+const mapDispatchToProps = (dispatch) => ({
+  handleFocus(){
+    console.log('focused')
+    dispatch({type:Focused})
+  },
+  handleBlur(){
+    dispatch({type:Blur})
+  }
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Header)
