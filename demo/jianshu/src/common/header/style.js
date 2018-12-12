@@ -24,12 +24,12 @@ export const HeaderContent = styled.div`
   float:left;
   width:960px;
   height:56px;
-  margin:0 240px 0 140px;
+  margin:0 auto 0 140px;
 `
 export const HeaderTitleItem = styled.div`
   position:relative;
-  float:left;
-  padding:${props=>!props.isSearch?'15px;':'9px 15px;'}
+  float: ${props => props.right?'right':'left'};
+  padding:${props => !props.isSearch?'15px;':'9px 15px;'}
   line-height:26px;
   color: ${props => props.color ? ' #ea6f5a;' : '#333;'};
   cursor:pointer;
@@ -65,6 +65,19 @@ export const HeaderTitleItem = styled.div`
   .slide-exit-active {
     width:160px;
   }
+  .SearchSlide-enter{
+    opacity:0
+    transition all .2s ease-out;
+  }
+  .SearchSlide-enter-active{
+    opacity:1
+  }
+  .SearchSlide-exit {
+    transition all .2s ease-out;
+  }
+  .SearchSlide-exit-active {
+    opacity:0
+  }
 `
 export const Search = styled.input.attrs({
   type:'text',
@@ -84,5 +97,99 @@ export const Search = styled.input.attrs({
   }
   &.focused{
     width:240px;
+  }
+`
+export const SearchInfo = styled.div`
+  position:absolute;
+  top:56px;
+  left:15px;
+  width:180px;
+  padding:20px;
+  box-shadow: 0 0 8px rgba(0,0,0,.2);
+  border-radius:4px;
+`
+export const SearchTitleWrapper = styled.div`
+  position:relative
+  width:100%;
+  height:30px;
+  &:before{
+    position:absolute;
+    top:-30px;
+    left:0px;
+    content:'';
+    width:0;
+    height:0;
+    border-width:0 10px 10px;
+    border-style:solid;
+    border-color:transparent transparent #fff;
+  }
+`
+export const SearchTitle = styled.div`
+    float: left;
+    font-size: 14px;
+    color: #969696;
+`
+export const SearchSwitch = styled.a`
+  float: right;
+  padding: 0;
+  font-size: 13px;
+  color: #969696;
+  background-color: transparent;
+  border-width: 0;
+  .iconfont{
+    font-size:14px;
+  }
+`
+export const SearchItem = styled.a`
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom:5px;
+  padding: 4px;
+  font-size: 12px;
+  line-height:12px;
+  color: #787878;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  &:hover{
+    color: #333;
+    border-color: #b4b4b4;
+  }
+`
+export const Login = styled.a`
+  float: right;
+  margin: 11px 6px 0 10px;
+  font-size: 15px;
+  line-height: 40px;
+  cursor:pointer;
+  color: #969696;
+`
+export const Register = styled(Login)`
+  float: right;
+  width: 80px;
+  height: 38px;
+  line-height: 24px;
+  margin: 9px 5px 0 15px;
+  font-size: 15px;
+  color: #ec6149;
+  text-align:center;
+  line-height:38px;
+  border: 1px solid rgba(236,97,73,.7);
+  border-radius: 20px;
+  border-color: #ec6149;
+  background-color: rgba(236,97,73,.05);
+`
+export const Write = styled(Login)`
+  float: right;
+  width: 100px;
+  height: 40px;
+  margin: 8px 10px 0;
+  line-height: 36px;
+  border-radius: 20px;
+  font-size: 15px;
+  color: #fff;
+  text-align:center;
+  background-color: #ea6f5a;
+  .iconfont{
+    font-size:20px;
   }
 `
