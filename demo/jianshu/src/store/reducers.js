@@ -11,6 +11,5 @@ export default (state=defaultState,action)=>{
   if(action.type===Blur){
     newState.focused = false
   }
-  console.log(newState)
   return newState
 }

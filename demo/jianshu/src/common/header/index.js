@@ -42,7 +42,6 @@ const mapStateToProps = (state) => ({
 })
 const mapDispatchToProps = (dispatch) => ({
   handleFocus(){
-    console.log('focused')
     dispatch({type:Focused})
   },
   handleBlur(){
