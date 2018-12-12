@@ -75,6 +75,7 @@ const mapStateToProps = (state) => ({
 })
 const mapDispatchToProps = (dispatch) => ({
   handleFocus(){
+    dispatch(store.creators.getSearchList())
     dispatch(store.creators.handleFocused())
   },
   handleBlur(){
