@@ -4,7 +4,10 @@ import {fromJS} from 'immutable'
 //fromJS 把一个对象转换为immutable对象
 const defaultState = fromJS({
   focused:false,
-  infoList:[]
+  mouseIn:false,
+  infoList:[],
+  page:0,
+  totalPage:0
 })
 const headerReducer = (state=defaultState,action)=>{
   switch(action.type){
@@ -13,7 +16,13 @@ const headerReducer = (state=defaultState,action)=>{
     case actionTypes.Blur:
       return state.set('focused',false)
     case actionTypes.InfoList:
-      return state.set('infoList',action.data)
+      return state.set('infoList',action.data).set('totalPage',action.totalPage)
+    case actionTypes.MouseEnter:
+      return state.set('mouseIn',true)
+    case actionTypes.MouseLeave:
+      return state.set('mouseIn',false)
+    case actionTypes.ChangePage:
+      return state.set('page',action.page)
     default:
       return state
   }

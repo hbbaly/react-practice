@@ -24,7 +24,7 @@ export const HeaderContent = styled.div`
   float:left;
   width:960px;
   height:56px;
-  margin:0 auto 0 140px;
+  margin:0 0 0 140px;
 `
 export const HeaderTitleItem = styled.div`
   position:relative;
@@ -137,7 +137,11 @@ export const SearchSwitch = styled.a`
   background-color: transparent;
   border-width: 0;
   .iconfont{
+    display:block;
+    float:left;
     font-size:14px;
+    transition:all .3s ease-out;
+    transform-origin:center center;
   }
 `
 export const SearchItem = styled.a`
