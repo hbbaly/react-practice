@@ -4,8 +4,7 @@ import {connect} from 'react-redux'
 import store from './store'
 import {JianShuHeader,HeaderWrapper,Logo,HeaderContent,HeaderTitleItem,Search,SearchInfo,SearchTitleWrapper,SearchItem,SearchTitle,SearchSwitch,Login,Register,Write} from './style'
 import { CSSTransition } from 'react-transition-group';
-const SearchInfoList = ["区块链", "小程序", "vue", "毕业", "PHP", "故事", "flutter", "理财", "美食", "投稿", "手帐", "书法", "PPT", "穿搭", "打碗碗花"]
-const getSearchInfoList = (show) => {
+const getSearchInfoList = (show,SearchInfoList) => {
   if(show){
     return(
       <SearchInfo >
@@ -24,6 +23,7 @@ const getSearchInfoList = (show) => {
   }
 }
 const Header = (props) => {
+  const {focused,handleFocus,handleBlur,SearchInfoList} = props
   return(
     <JianShuHeader>
         <HeaderWrapper>
@@ -44,15 +44,15 @@ const Header = (props) => {
             <HeaderTitleItem isSearch>
             <CSSTransition
               timeout={200}
-              in={props.focused}
+              in={focused}
               classNames="slide">
-              <Search className={props.focused?'focused':''} onFocus={props.handleFocus} onBlur={props.handleBlur}>
+              <Search className={focused?'focused':''} onFocus={handleFocus} onBlur={handleBlur}>
               </Search>
               
               </CSSTransition>
-              <i className={props.focused?'iconfont search focused':'iconfont search'}>&#xe63a;</i>
+              <i className={focused?'iconfont search focused':'iconfont search'}>&#xe63a;</i>
               
-                {getSearchInfoList(props.focused)}
+                {getSearchInfoList(focused,SearchInfoList)}
 
             </HeaderTitleItem>
             <HeaderTitleItem right>
@@ -71,7 +71,8 @@ const Header = (props) => {
   )
 }
 const mapStateToProps = (state) => ({
-  focused: state.get('header').get('focused')
+  focused: state.get('header').get('focused'),
+  SearchInfoList:state.get('header').get('infoList')
 })
 const mapDispatchToProps = (dispatch) => ({
   handleFocus(){

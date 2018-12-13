@@ -7,19 +7,15 @@ const defaultState = fromJS({
   infoList:[]
 })
 const headerReducer = (state=defaultState,action)=>{
-  // const newState = JSON.parse(JSON.stringify(state))
-  if(action.type===actionTypes.Focused){
-    // 使用set改变immutable中的数据修改  get数据获取
-    return state.set('focused',true)
-    // newState.focused = true
+  switch(action.type){
+    case actionTypes.Focused:
+      return state.set('focused',true)
+    case actionTypes.Blur:
+      return state.set('focused',false)
+    case actionTypes.InfoList:
+      return state.set('infoList',action.data)
+    default:
+      return state
   }
-  if(action.type===actionTypes.Blur){
-    return state.set('focused',false)
-    // newState.focused = false
-  }
-  if(action.type===actionTypes.InfoList){
-    return state.set('infoList',action.data)
-  }
-  return state
 }
 export default headerReducer
