@@ -61,7 +61,7 @@ class Header extends React.Component{
               timeout={200}
               in={this.props.focused}
               classNames="slide">
-              <Search className={this.props.focused?'focused':''} onFocus={this.props.handleFocus} onBlur={this.props.handleBlur}>
+              <Search className={this.props.focused?'focused':''} onFocus={() => this.props.handleFocus(this.props.SearchInfoList)} onBlur={this.props.handleBlur}>
               </Search>
               
               </CSSTransition>
@@ -94,8 +94,10 @@ const mapStateToProps = (state) => ({
   totalPage:state.get('header').get('totalPage'),
 })
 const mapDispatchToProps = (dispatch) => ({
-  handleFocus(){
-    dispatch(store.creators.getSearchList())
+  handleFocus(list){
+    if(list.size===0){
+      dispatch(store.creators.getSearchList())
+    }
     dispatch(store.creators.handleFocused())
   },
   handleBlur(){

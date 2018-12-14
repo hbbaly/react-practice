@@ -24,7 +24,7 @@ export const HeaderContent = styled.div`
   float:left;
   width:960px;
   height:56px;
-  margin:0 0 0 140px;
+  margin:0 0 0 80px;
 `
 export const HeaderTitleItem = styled.div`
   position:relative;
