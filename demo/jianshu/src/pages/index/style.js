@@ -5,7 +5,7 @@ export const IndexWrapper = styled.div`
 `
 export const IndexBannerList = styled.div`
   display:inline-block;
-  width:66.66667%;
+  width:640px;
   padding-top:30px;
   .banner-item{
     display:block;

@@ -41,7 +41,7 @@ class Index extends React.Component{
             </IndexNavItem>
           ))}
         </IndexNavList>
-        <ArticleList></ArticleList>
+        <ArticleList articleList = {this.props.articleList}></ArticleList>
       </IndexWrapper>
     )
   }
