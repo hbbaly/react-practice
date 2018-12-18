@@ -11,7 +11,11 @@ class Index extends React.Component{
     this.props.getArticleData()
       window.addEventListener('scroll',this.props.isShowGoTop)
   }
-    goTop(){
+  componentWillUnmount() {
+    window.removeEventListener('scroll',this.props.isShowGoTop)
+  }
+
+  goTop(){
       window.scrollTo(0,0)
     }
   render(){
@@ -68,8 +72,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
     isShowGoTop(){
         let show = document.documentElement.scrollTop>400
-        console.log(show)
-
         dispatch(store.creators.changeGoTop(show))
     }
 })

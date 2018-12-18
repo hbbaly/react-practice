@@ -6,6 +6,7 @@ import Header from './common/header/index'
 import {GlobalStyle} from './style'
 import {IconStyle} from './statics/icon/iconfont'
 import Index from './pages/index/index'
+import Detail from './pages/detail/index'
 class App extends Component {
   render() {
     return (
@@ -17,7 +18,7 @@ class App extends Component {
           <BrowserRouter>
             <div>
               <Route path='/' exact component={Index}></Route>
-              <Route path='/detail' exact render={()=><div>detail</div>}></Route>
+              <Route path='/detail/:id' component={Detail}></Route>
             </div>
           </BrowserRouter>
         </div>
