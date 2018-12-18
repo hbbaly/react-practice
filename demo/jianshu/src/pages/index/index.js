@@ -3,12 +3,17 @@ import {connect} from 'react-redux'
 import { IndexWrapper,IndexBannerList,IndexNavList,IndexNavItem} from './style'
 import  ArticleList from './components/ArticleListView'
 import More from '../../common/more/index'
+import GoTop from '../../common/goTop/index'
 import store from './store/index'
 // import ActionCreators from './store/actionTypes'
 class Index extends React.Component{
   componentDidMount(){
     this.props.getArticleData()
+      window.addEventListener('scroll',this.props.isShowGoTop)
   }
+    goTop(){
+      window.scrollTo(0,0)
+    }
   render(){
     const navList = [{
       href:'https://www.jianshu.com/trending/weekly?utm_medium=index-banner-s&utm_source=desktop',
@@ -44,20 +49,28 @@ class Index extends React.Component{
         </IndexNavList>
         <ArticleList articleList = {this.props.articleList}></ArticleList>
         <More content="阅读更多" getMoreData = {this.props.getMoreData}></More>
+          {this.props.showGoTop?          <GoTop content='顶' goTop={this.goTop} showGoTop={this.props.showGoTop}></GoTop>
+          :null}
       </IndexWrapper >
     )
   }
 }
 const mapStateToProps = (state) => ({
   articleList:state.get('article').get('articleList'),
+    showGoTop:state.get('article').get('showGoTop'),
 })
 const mapDispatchToProps = (dispatch) => ({
   getArticleData () {
     dispatch(store.creators.getArticleData())
   },
   getMoreData(){
-    console.log('子传父')
     dispatch(store.creators.getArticleData())
-  }
+  },
+    isShowGoTop(){
+        let show = document.documentElement.scrollTop>400
+        console.log(show)
+
+        dispatch(store.creators.changeGoTop(show))
+    }
 })
 export default connect(mapStateToProps,mapDispatchToProps)(Index)

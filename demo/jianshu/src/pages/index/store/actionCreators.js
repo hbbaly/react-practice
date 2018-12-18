@@ -9,7 +9,12 @@ const getArticleData = () => {
     })
   }
 }
+const changeGoTop = (showGoTop) => ({
+  type:ActionTypes.CHANGE_GOTOP,
+  showGoTop
+})
 export  default{
   getArticleList,
-  getArticleData
+  getArticleData,
+  changeGoTop
 }
