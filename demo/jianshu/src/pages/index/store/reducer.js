@@ -6,7 +6,7 @@ const defaultState = fromJS({
 const articleList = (state = defaultState,action) => {
   switch(action.type){
     case ActionTypes.GET_ARTICLE_LIST:
-      return state.set('articleList',action.data)
+      return state.set('articleList',state.get('articleList').concat(action.data))
     default:
       return state
   }

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 export const ArticleWrapper = styled.div`
-  float:left;
+  // float:left;
   width:638px;
 `
 export const ArticleItem = styled.div`
@@ -20,8 +20,12 @@ export const ArticleItem = styled.div`
     height: 100px;
   }
 `
-export const ArticleItemContent = styled.div`
+export const ArticleItemContent = styled.a.attrs({
+    href:'/detail'
+})`
+    display:block;
   padding-right: 165px;
+  text-decoration:none;
 `
 export const ArticleTitle = styled.a`
   margin: -7px 0 4px;

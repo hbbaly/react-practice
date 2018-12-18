@@ -5,12 +5,12 @@ export default class ArticleList extends React.Component{
     return(
       <ArticleWrapper>
         {this.props.articleList.map(item=> (
-          <ArticleItem>
+          <ArticleItem key={item.key}>
           <ArticleItemContent>
             <ArticleTitle>{item.object.data.title}</ArticleTitle>
             <ArticleDesc>{item.object.data.public_abbr}</ArticleDesc>
             <ArticleMeta>
-            <a class="nickname" target="_blank" href="/u/183101b09e46">{item.object.data.user.nickname}</a>
+            <a className="nickname" target="_blank" href="/u/183101b09e46">{item.object.data.user.nickname}</a>
             <ArticleComments>{item.object.data.public_comments_count}</ArticleComments>
             <ArticleLikes>{item.object.data.likes_count}</ArticleLikes>
             </ArticleMeta>

@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { IndexWrapper,IndexBannerList,IndexNavList,IndexNavItem} from './style'
 import  ArticleList from './components/ArticleListView'
+import More from '../../common/more/index'
 import store from './store/index'
 // import ActionCreators from './store/actionTypes'
 class Index extends React.Component{
@@ -42,7 +43,8 @@ class Index extends React.Component{
           ))}
         </IndexNavList>
         <ArticleList articleList = {this.props.articleList}></ArticleList>
-      </IndexWrapper>
+        <More content="阅读更多" getMoreData = {this.props.getMoreData}></More>
+      </IndexWrapper >
     )
   }
 }
@@ -51,6 +53,10 @@ const mapStateToProps = (state) => ({
 })
 const mapDispatchToProps = (dispatch) => ({
   getArticleData () {
+    dispatch(store.creators.getArticleData())
+  },
+  getMoreData(){
+    console.log('子传父')
     dispatch(store.creators.getArticleData())
   }
 })
