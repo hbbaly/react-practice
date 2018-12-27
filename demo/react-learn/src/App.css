@@ -1,0 +1,9 @@
+.App{
+  margin-top:30px;
+}
+.list{
+  display:block;
+  width:100%;
+  text-align:center;
+  text-decoration: none;
+}
