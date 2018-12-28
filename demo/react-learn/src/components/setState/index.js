@@ -21,6 +21,11 @@ export default class SetStateView extends React.Component{
     // }, () => {
     // console.log(this.state.choose,'choose is changed')
     // })
+
+    // react合成事件：React并不是将click事件绑在该div的真实DOM上，而是在document处监听所有支持的事件，当事件发生并冒泡至document处时，React将事件内容封装并交由真正的处理函数运行。
+    // 不要将原生事件（addEventListener）和React合成事件一起混合使用，这两个机制是不一样的。
+    // 钩子函数：生命周期，回调函数
+    // setState在原生事件，和setTimeout 是同步的，在合成事件和钩子函数是同步的
     setTimeout(() => {
       this.setState({
         choose:val
