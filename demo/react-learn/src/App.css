@@ -1,9 +1,26 @@
 .App{
   margin-top:30px;
 }
-.list{
+.nav{
+  position: absolute;
+  top:0;
+  left:0;
+  width:30%;
+  height:100%;
+  border-right:2px solid #ccc;
+}
+.nav-item{
   display:block;
-  width:100%;
+  line-height: 40px;
   text-align:center;
   text-decoration: none;
+}
+.page{
+  position: absolute;
+  top:0;
+  right:0;
+  display:block;
+  width:69%;
+  height:100%;
+  overflow: scroll;
 }

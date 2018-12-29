@@ -9,7 +9,7 @@ export default class LifeCycle extends React.Component{
   }
   render(){
     return(
-      <div className="page-lifecycle">
+      <div className="page page-lifecycle">
         <LifeCycleView name= {this.state.name} />
       </div>
     )

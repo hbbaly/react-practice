@@ -19,7 +19,7 @@ export default class Index extends React.Component{
   render(){
     const  { name, age } = this.state
     return(
-      <div className="page-index">
+      <div className="page page-index">
       <button onClick = {this.changeName}>change name</button>
         <Typechecking name={name} age = {age}>
           <p>my name , my age </p>
