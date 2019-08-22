@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Clock from './clock'
 const name = ''
 function App() {
   if(name) {
@@ -13,6 +14,7 @@ function App() {
       <div>
         <h1>hello world</h1>
         <div>desc</div>
+        <Clock></Clock>
       </div>
     )
   }

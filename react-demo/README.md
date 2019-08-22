@@ -92,4 +92,66 @@ return (
 
 `React DOM` 在渲染所有输入内容之前，默认会进行转义。它可以确保在你的应用中，永远不会注入那些并非自己明确编写的内容。所有的内容在渲染之前都被转换成了字符串。这样可以有效地防止 `XSS`（`cross-site-scripting`, 跨站脚本）攻击。
 
+## 元素渲染
 
+### 将一个元素渲染为 DOM
+
+想要将一个 `React` 元素渲染到根 `DOM` 节点中，只需把它们一起传入 `ReactDOM.render()`
+
+```js
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+### 更新已渲染的元素
+
+```js
+import React, { Component } from 'react';
+class Clock extends Component {
+  constructor(){
+    super()
+  }
+  render(){
+    return(
+      <div>
+        <h2>It is {new Date().toLocaleTimeString()}.</h2>
+      </div>
+    )
+  }
+}
+export default Clock
+```
+
+### 只更新它需要更新的部分
+
+上例中加上
+
+```js
+import React, { Component } from 'react';
+class Clock extends Component {
+  constructor(){
+    super()
+    this.state = {
+      time: new Date().toLocaleTimeString()
+    }
+  }
+  componentDidMount(){
+    setInterval(()=> {
+      this.setState({
+        time: new Date().toLocaleTimeString()
+      })
+    }, 1000)
+  }
+  render(){
+    return(
+      <div>
+        <h2>It is {this.state.time}</h2>
+      </div>
+    )
+  }
+}
+export default Clock
+```
+
+查看DOM元素，可以看到每次只渲染需要改变的，尽管每一秒我们都会新建一个描述整个 UI 树的元素，
+
+React DOM 只会更新实际改变了的内容。
