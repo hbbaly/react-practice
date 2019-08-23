@@ -622,3 +622,191 @@ function App() {
 }
 ```
 
+## Context
+
+### 何时使用 Context
+
+
+`Context` 设计目的是为了共享那些对于一个组件树而言是“全局”的数据，例如当前认证的用户、主题或首选语言。举个例子，在下面的代码中，我们通过一个 “`theme`” 属性手动调整一个按钮组件的样式：
+
+```js
+class App extends React.Component {
+  render() {
+    return <Toolbar theme="dark" />;
+  }
+}
+
+function Toolbar(props) {
+  // Toolbar 组件接受一个额外的“theme”属性，然后传递给 ThemedButton 组件。
+  // 如果应用中每一个单独的按钮都需要知道 theme 的值，这会是件很麻烦的事，
+  // 因为必须将这个值层层传递所有组件。
+  return (
+    <div>
+      <ThemedButton theme={props.theme} />
+    </div>
+  );
+}
+
+class ThemedButton extends React.Component {
+  render() {
+    return <Button theme={this.props.theme} />;
+  }
+}
+```
+
+使用 `context`, 我们可以避免通过中间元素传递 `props`
+
+
+```js
+// Context 可以让我们无须明确地传遍每一个组件，就能将值深入传递进组件树。
+// 为当前的 theme 创建一个 context（“light”为默认值）。
+const ThemeContext = React.createContext('light');
+
+class App extends React.Component {
+  render() {
+    // 使用一个 Provider 来将当前的 theme 传递给以下的组件树。
+    // 无论多深，任何组件都能读取这个值。
+    // 在这个例子中，我们将 “dark” 作为当前的值传递下去。
+    return (
+      <ThemeContext.Provider value="dark">
+        <Toolbar />
+      </ThemeContext.Provider>
+    );
+  }
+}
+
+// 中间的组件再也不必指明往下传递 theme 了。
+function Toolbar(props) {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+class ThemedButton extends React.Component {
+  // 指定 contextType 读取当前的 theme context。
+  // React 会往上找到最近的 theme Provider，然后使用它的值。
+  // 在这个例子中，当前的 theme 值为 “dark”。
+  static contextType = ThemeContext;
+  render() {
+    return <Button theme={this.context} />;
+  }
+}
+```
+
+### 使用 Context 之前的考虑
+
+`Context` 主要应用场景在于很多不同层级的组件需要访问同样一些的数据。**请谨慎使用，因为这会使得组件的复用性变差**。
+
+
+## 错误边界
+
+错误边界是一种 `React` 组件，这种组件可以捕获并打印发生在其子组件树任何位置的 `JavaScript` 错误，并且，它会渲染出备用 `UI`，而不是渲染那些崩溃了的子组件树。错误边界在渲染期间、生命周期方法和整个组件树的构造函数中捕获错误。
+
+
+**注意**
+
+错误边界无法捕获以下场景中产生的错误：
+
+- 事件处理（了解更多）
+- 异步代码（例如 `setTimeout` 或 `requestAnimationFrame `回调函数）
+- 服务端渲染
+- 它自身抛出来的错误（并非它的子组件）
+
+如果一个 `class` 组件中定义了 `static getDerivedStateFromError()` 或 `componentDidCatch()` 这两个生命周期方法中的任意一个（或两个）时，那么它就变成一个错误边界。当抛出错误后，请使用 `static getDerivedStateFromError()` 渲染备用 `UI` ，使用 `componentDidCatch()` 打印错误信息。
+
+
+```js
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    // 更新 state 使下一次渲染能够显示降级后的 UI
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, info) {
+    // 你同样可以将错误日志上报给服务器
+    logErrorToMyService(error, info);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // 你可以自定义降级后的 UI 并渲染
+      return <h1>Something went wrong.</h1>;
+    }
+
+    return this.props.children; 
+  }
+}
+```
+
+错误边界的工作方式类似于 `JavaScript` 的 `catch {}`，不同的地方在于错误边界只针对 `React` 组件。只有 `class` 组件才可以成为成错误边界组件。大多数情况下, 你只需要声明一次错误边界组件, 并在整个应用中使用它。
+
+
+## Refs 转发
+
+
+`Ref` 转发是一项将 `ref `自动地通过组件传递到其一子组件的技巧。对于大多数应用中的组件来说，这通常不是必需的。但其对某些组件，尤其是可重用的组件库是很有用的。最常见的案例如下所述。
+
+
+
+
+## Fragments
+
+React 中的一个常见模式是一个组件返回多个元素。Fragments 允许你将子列表分组，而无需向 DOM 添加额外节点。
+
+
+```js
+class Columns extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <td>Hello</td>
+        <td>World</td>
+      </React.Fragment>
+    );
+  }
+}
+```
+
+### 短语法
+
+你可以使用一种新的，且更简短的语法来声明 `Fragments`。它看起来像空标签:
+```js
+class Columns extends React.Component {
+  render() {
+    return (
+      <>
+        <td>Hello</td>
+        <td>World</td>
+      </>
+    );
+  }
+}
+```
+
+### 带 key 的 Fragments
+
+使用显式 `<React.Fragment>` 语法声明的片段可能具有 `key`。一个使用场景是将一个集合映射到一个 `Fragments` 数组.
+
+
+```js
+function Glossary(props) {
+  return (
+    <dl>
+      {props.items.map(item => (
+        // 没有`key`，React 会发出一个关键警告
+        <React.Fragment key={item.id}>
+          <dt>{item.term}</dt>
+          <dd>{item.description}</dd>
+        </React.Fragment>
+      ))}
+    </dl>
+  );
+}
+```
